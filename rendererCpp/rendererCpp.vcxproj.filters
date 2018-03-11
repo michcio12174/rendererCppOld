@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Raytracer">
+      <UniqueIdentifier>{75e0d9b0-dfb2-49ca-89c8-0a534829e495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Raytracer">
+      <UniqueIdentifier>{7b1ed5cd-b120-4253-a7d3-de45d799363d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Raytracer\Cameras">
+      <UniqueIdentifier>{9b85b6c2-9556-450f-ad0e-3d84878c9645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Raytracer\Cameras">
+      <UniqueIdentifier>{3ae9f75e-5929-47b2-9f78-260f9d147312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Raytracer\Materials">
+      <UniqueIdentifier>{88a4a38d-3971-41e1-b0a6-7d555ad26050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Raytracer\Materials">
+      <UniqueIdentifier>{6bc09153-8426-4aea-be45-75cf0f39f1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Raytracer\Geometric Objects">
+      <UniqueIdentifier>{e31e5c0e-90f5-4e6a-9bea-d805266f4efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Raytracer\Geometric Objects">
+      <UniqueIdentifier>{cd99fabb-d7fe-410f-b889-ee68227a3f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UniversalClases">
+      <UniqueIdentifier>{903f38f3-f768-46e4-9c3e-58ee31ce9130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UniversalClases">
+      <UniqueIdentifier>{35360bed-a717-499c-92ec-59d719c0cb5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rasterizer">
+      <UniqueIdentifier>{953260d6-c6a0-4294-bed4-fafb7fa85cce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Rasterizer">
+      <UniqueIdentifier>{1ad49b17-7656-4dad-ae05-b6fca2455d73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Raytracer\Tracer">
+      <UniqueIdentifier>{10d0e9a8-e3cc-46bf-b0d7-08b6d4101e12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Raytracer\Tracer">
+      <UniqueIdentifier>{fe0f082d-5541-4c44-ba8a-0ad03443fcca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UniversalClases\Lights">
+      <UniqueIdentifier>{8fa8195c-63ea-47c8-905b-7d703d1ede90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UniversalClases\Textures">
+      <UniqueIdentifier>{45f1f8cc-a951-4b0a-a8ce-43eca2a64ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UniversalClases\Lights">
+      <UniqueIdentifier>{a44ec6bb-e290-436f-bf7a-1425680ab822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UniversalClases\Textures">
+      <UniqueIdentifier>{b250f36b-c7e7-4308-9d9b-de0f084e15b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UniversalClases\Geometry">
+      <UniqueIdentifier>{558f001f-a84a-4da0-a2e5-f2d533262b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UniversalClases\Geometry">
+      <UniqueIdentifier>{10d792e0-43bb-4199-9c02-92590c19bd45}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CImg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="orthogonalCamera.h">
+      <Filter>Header Files\Raytracer\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="rayHitInfo.h">
+      <Filter>Header Files\Raytracer\Tracer</Filter>
+    </ClInclude>
+    <ClInclude Include="multipleObjectsTracer.h">
+      <Filter>Header Files\Raytracer\Tracer</Filter>
+    </ClInclude>
+    <ClInclude Include="perspectiveCamera.h">
+      <Filter>Header Files\Raytracer\Cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="diffuseMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="ambientLight.h">
+      <Filter>Header Files\UniversalClases\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="directionalMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="specularMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Header Files\UniversalClases\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="mirrorMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="transparentMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="AshikhminShirleyMaterial.h">
+      <Filter>Header Files\Raytracer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rasterizer.h">
+      <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="saveToTGA.h">
+      <Filter>Header Files\UniversalClases</Filter>
+    </ClInclude>
+    <ClInclude Include="geometricObject.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="plane.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ray.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="sphereAnisotropic.h">
+      <Filter>Header Files\Raytracer\Geometric Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="buffer.h">
+      <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="textureSpherical.h">
+      <Filter>Header Files\UniversalClases\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>Header Files\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>Header Files\UniversalClases\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="vectorsAndMatrices.h">
+      <Filter>Header Files\UniversalClases</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJParser.h">
+      <Filter>Header Files\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="vertexProcessor.h">
+      <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="materialR.h">
+      <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="vertex.h">
+      <Filter>Header Files\UniversalClases\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle.h">
+      <Filter>Header Files\UniversalClases\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJReader.h">
+      <Filter>Header Files\UniversalClases</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rendererCpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rayHitInfo.cpp">
+      <Filter>Source Files\Raytracer\Tracer</Filter>
+    </ClCompile>
+    <ClCompile Include="multipleObjectsTracer.cpp">
+      <Filter>Source Files\Raytracer\Tracer</Filter>
+    </ClCompile>
+    <ClCompile Include="perspectiveCamera.cpp">
+      <Filter>Source Files\Raytracer\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="orthogonalCamera.cpp">
+      <Filter>Source Files\Raytracer\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="diffuseMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="ambientLight.cpp">
+      <Filter>Source Files\UniversalClases\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="specularMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="directionalMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="PhongMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Source Files\UniversalClases\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="transparentMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="mirrorMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="AshikhminShirleyMaterial.cpp">
+      <Filter>Source Files\Raytracer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rasterizer.cpp">
+      <Filter>Source Files\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="saveToTGA.cpp">
+      <Filter>Source Files\UniversalClases</Filter>
+    </ClCompile>
+    <ClCompile Include="geometricObject.cpp">
+      <Filter>Source Files\Raytracer\Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="plane.cpp">
+      <Filter>Source Files\Raytracer\Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.cpp">
+      <Filter>Source Files\Raytracer\Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere.cpp">
+      <Filter>Source Files\Raytracer\Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="sphereAnisotropic.cpp">
+      <Filter>Source Files\Raytracer\Geometric Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer.cpp">
+      <Filter>Source Files\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="textureSpherical.cpp">
+      <Filter>Source Files\UniversalClases\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>Source Files\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>Source Files\UniversalClases\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="vectorsAndMatrices.cpp">
+      <Filter>Source Files\UniversalClases</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJParser.cpp">
+      <Filter>Source Files\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="vertexProcessor.cpp">
+      <Filter>Source Files\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="materialR.cpp">
+      <Filter>Source Files\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="triangle.cpp">
+      <Filter>Source Files\UniversalClases\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJReader.cpp">
+      <Filter>Source Files\UniversalClases</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files\Rasterizer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
