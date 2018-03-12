@@ -119,7 +119,9 @@ struct float4x4
 	float4x4(const vector4 &row1, const vector4 &row2, const vector4 &row3, const vector4 &row4);
 
 	void operator = (float4x4 const &B);
-	vector4 operator * (vector3 &vector);
+	//in reality performs multiplication of vector by matrix, not matrix by vector
+	vector4 operator * (vector3 &vector); 
+	//in reality performs multiplication of vector by matrix, not matrix by vector
 	vector4 operator * (vector4 &vector);
 	float4x4 operator * (float4x4 B);
 	vector4& operator [] (int i);

@@ -450,26 +450,28 @@ void float4x4::operator=(float4x4 const &B)
 	row4 = B.row4;
 }
 
-vector4 float4x4::operator*(vector3 &vector)//todo mam odwrócone - powinienem mnorzyæ wektor przez macierz, a nie macierz przez wektor
+//in reality performs multiplication of vector by matrix, not matrix by vector
+vector4 float4x4::operator*(vector3 &vector)
 {
 	vector4 C;
 	for (int i = 0; i < 4; i++) {
-		C[i] = (*this)[i][0] * vector[0] +
-			(*this)[i][1] * vector[1] +
-			(*this)[i][2] * vector[2] +
-			(*this)[i][3];
+		C[i] = vector[0] * (*this)[0][i] +
+			vector[1] * (*this)[1][i] +
+			vector[2] * (*this)[2][i] +
+			(*this)[3][i];
 	}
 	return C;
 }
 
+//in reality performs multiplication of vector by matrix, not matrix by vector
 vector4 float4x4::operator*(vector4 &vector)
 {
 	vector4 C;
 	for (int i = 0; i < 4; i++) {
-		C[i] = (*this)[i][0] * vector[0] +
-			(*this)[i][1] * vector[1] +
-			(*this)[i][2] * vector[2] +
-			(*this)[i][3] * vector[3];
+		C[i] = vector[0] * (*this)[0][i] +
+			vector[1] * (*this)[1][i] +
+			vector[2] * (*this)[2][i] +
+			vector[3] * (*this)[3][i];
 	}
 	return C;
 }
