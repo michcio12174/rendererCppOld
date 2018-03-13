@@ -55,9 +55,9 @@ int main()
 	//projekt();
 
 	//pipeline
-	matrixAlgebraTest();
+	//matrixAlgebraTest();
 	//savingTGA();
-	//rasterizerTest();
+	rasterizerTest();
 
 	/*int x = 0;
 	unsigned char a = 0, r = 0, g = 0, b = 255;

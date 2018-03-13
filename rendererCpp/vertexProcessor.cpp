@@ -93,8 +93,8 @@ void vertexProcessor::rotate(vector3 axis, float angle)
 	float x = axis.x;
 	float y = axis.y;
 	float z = axis.z;
-	float c = cos(angleInRadians);
 	float s = sin(angleInRadians);
+	float c = cos(angleInRadians);
 	float oneMinusC = 1.0f - c;
 
 	obj2world = obj2world * float4x4
