@@ -138,6 +138,10 @@ void orthogonalCamera::computeUVW(vector3 &planeCenter, vector3 &lookat, vector3
 	//obliczam v, odpowiednik y
 	v = w.cross(u);
 
+	cout << "u: " << u.toString() << endl;
+	cout << "v: " << v.toString() << endl;
+	cout << "w: " << w.toString() << endl << endl;
+
 	if (planeCenter.x == lookat.x && planeCenter.z == lookat.z && planeCenter.y > lookat.y) { 
 		// camera looking vertically down
 		u = vector3(0, 0, 1, false);

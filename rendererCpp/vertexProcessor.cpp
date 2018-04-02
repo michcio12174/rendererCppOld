@@ -45,26 +45,29 @@ void vertexProcessor::setPerspective(float fov, float aspect, float nearPlane_z,
 	float nearPlaneMinusFarPlane = nearPlane_z - farPlane_z;
 
 	view2proj = float4x4(
-		vector4(f / aspect, 0, 0, 0),
-		vector4(0, f, 0, 0),
-		vector4(0, 0, (farPlane_z + nearPlane_z) / (nearPlaneMinusFarPlane), (2.0F * farPlane_z * nearPlane_z) / (nearPlaneMinusFarPlane)),
-		vector4(0, 0, -1.0f, 0));
+		vector4(f / aspect, 0.0f, 0.0f,                                                         0.0f),
+		vector4(0.0f,       f,    0.0f,                                                         0.0f),
+		vector4(0.0f,       0.0f, (farPlane_z + nearPlane_z) / (nearPlaneMinusFarPlane),       -1.0f),
+		vector4(0.0f,       0.0f, (2.0F * farPlane_z * nearPlane_z) / (nearPlaneMinusFarPlane), 0.0f));
 }
 
 void vertexProcessor::setLookAt(vector3 eye, vector3 target, vector3 up)
 {
-	vector3 forward = (eye - target).normalize();
+	//if we would like the forward vector (local z axis) to point toward target
+	//it should be equal to target - eye
+	//however a convention says that cameras look in direction of negative z axis
+	//therefore forward vector is flipped
+	vector3 forward = (eye - target).normalize(); //reversed so camera looks along negative z
 	up.normalize();
-	vector3 side = forward.cross(up);
-	vector3 up1 = side.cross(forward);
+	vector3 side = up.cross(forward);
+	vector3 up1 = forward.cross(side);
 
 	world2view = float4x4
 	(
-		vector4(side.x, side.y, side.z, -side.dot(eye)),
-		vector4(up1.x, up1.y, up1.z, -up1.dot(eye)),
-		vector4(forward.x, forward.y, forward.z, -forward.dot(eye)),
-		vector4(0.0f, 0.0f, 0.0f, 1.0f)
-
+		vector4(side.x, up1.x, forward.x, 0.0f),
+		vector4(side.y, up1.y, forward.y, 0.0f),
+		vector4(side.z, up1.z, forward.z, 0.0f),
+		vector4(-eye.x , -eye.y, -eye.z, 1.0f)
 	);
 }
 
@@ -78,10 +81,10 @@ void vertexProcessor::setIdentity()
 void vertexProcessor::translate(vector3 v)
 {
 	obj2world = obj2world * float4x4(
-		vector4(1.0f, 0.0f, 0.0f, v.x),
-		vector4(0.0f, 1.0f, 0.0f, v.y),
-		vector4(0.0f, 0.0f, 1.0f, v.z),
-		vector4(0.0f, 0.0f, 0.0f, 1.0f)
+		vector4(1.0f, 0.0f, 0.0f, 0.0f),
+		vector4(0.0f, 1.0f, 0.0f, 0.0f),
+		vector4(0.0f, 0.0f, 1.0f, 0.0f),
+		vector4(v.x,  v.y,  v.z,  1.0f)
 	);
 }
 
@@ -96,23 +99,23 @@ void vertexProcessor::rotate(vector3 axis, float angle)
 	float s = sin(angleInRadians);
 	float c = cos(angleInRadians);
 	float oneMinusC = 1.0f - c;
-
+	
 	obj2world = obj2world * float4x4
 	(
-		vector4((x * x * oneMinusC) + c, (x * y * oneMinusC) - z * s, (x * z * oneMinusC) + y * s, 0.0f),
-		vector4((x * y * oneMinusC) + z * s, (y * y * oneMinusC) + c, (y * z * oneMinusC) - x * s, 0.0f),
-		vector4((x * z * oneMinusC) - y * s, (y * z * oneMinusC) + x * s, (z * z * oneMinusC) + c, 0.0f),
-		vector4(0.0f, 0.0f, 0.0f, 1.0f)
+		vector4((x * x * oneMinusC) + c,       (x * y * oneMinusC) + z * s,   (x * z * oneMinusC) - y * s,   0.0f),
+		vector4((x * y * oneMinusC) - z * s,   (y * y * oneMinusC) + c,       (y * z * oneMinusC) + x * s,   0.0f),
+		vector4((x * z * oneMinusC) + y * s,   (y * z * oneMinusC) - x * s,   (z * z * oneMinusC) + c,       0.0f),
+		vector4(0.0f,                           0.0f,                         0.0f,                          1.0f)
 	);
 }
 
 void vertexProcessor::scale(vector3 scale)
 {
 	obj2world = obj2world * float4x4(
-		vector4(scale.x, 0, 0, 0),
-		vector4(0, scale.y, 0, 0),
-		vector4(0, 0, scale.z, 0),
-		vector4(0, 0, 0, 1)
+		vector4(scale.x, 0,       0,       0),
+		vector4(0,       scale.y, 0,       0),
+		vector4(0,       0,       scale.z, 0),
+		vector4(0,       0,       0,       1)
 	);
 }
 

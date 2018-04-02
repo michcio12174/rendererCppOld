@@ -84,9 +84,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CImg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="orthogonalCamera.h">
       <Filter>Header Files\Raytracer\Cameras</Filter>
     </ClInclude>
@@ -188,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="mesh.h">
       <Filter>Header Files\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="CImg.h">
+      <Filter>Header Files\UniversalClases</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

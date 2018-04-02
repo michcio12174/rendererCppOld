@@ -30,6 +30,7 @@ void projekt();
 void matrixAlgebraTest();
 void savingTGA();
 void rasterizerTest();
+void tempf();
 
 //zmienne dla œwiata
 int width = 800, height = 600;
@@ -41,8 +42,8 @@ world worldOne(maxAntialiasingIterations, minColorDistanse, ambientL);
 
 //dane dla kamer
 float zoom = 3.6f;
-vector3 centerOfWievingPlane(0, 0, 0, false);
-vector3 lookat(0, 0, -1, false);
+vector3 centerOfWievingPlane(120, 80, -90, false);
+vector3 lookat(0, 0, 0, false);
 
 int main()
 {
@@ -82,14 +83,16 @@ void rasterizerTest() {
 	rasterizer testRasterizer(widthR, heightR);
 
 	//creating test meshes
+	vector3 red(1, 0, 0);
+	vector3 green(0, 1, 0);
 	mesh mesh1;
-	mesh1.addTriangle(triangle(vector3(0, -1, 0.3), vector3(0, 0, 0.3), vector3(-1, -1, 0.3), vector3(1, 0, 0)));//red triangle
-	mesh1.addTriangle(triangle(vector3(0, -1, 0.2), vector3(0, 0, 0.5), vector3(-1, 0, 0.5), vector3(0, 1, 0)));//green triangle
+	mesh1.addTriangle(triangle(vector3(0, -1, 0.3), vector3(0, 0, 0.3), vector3(-1, -1, 0.3), red));//red triangle
+	//mesh1.addTriangle(triangle(vector3(0, -1, 0.2), vector3(0, 0, 0.5), vector3(-1, 0, 0.5), green));//green triangle
 	testRasterizer.addObject(mesh1);
 
-	mesh mesh2;
-	OBJReader reader2(mesh2, "../models/cone", 1);
-	testRasterizer.addObject(mesh2);
+	//mesh mesh2;
+	//OBJReader reader2(mesh2, "../models/cone", 1);
+	//testRasterizer.addObject(mesh2);
 
 	//testRasterizer.setPerspective(60.0f, static_cast<float>(widthR) / heightR, 0.3f, 100.0f);
 
@@ -97,10 +100,7 @@ void rasterizerTest() {
 	//tradycyjnie kamera jest zoriantowana wzd³u¿ negatywnej osi z
 	//to znaczy, ¿e wektor tworzony przez eye i target musi byæ przeciwny wzglêdem kierunku w, który chcemy obserwowaæ
 	//ale nie wiem czemu jest odwrócone w osi x
-	testRasterizer.setLookAt(vector3(0, 0, -0.5), vector3(0, 0, -1), vector3(0, 1, 0));
-	//testRasterizer.setLookAt(vector3(0, 0, -2), vector3(0, 0, -1), vector3(0, 1, 0));
-
-	testRasterizer.calculateFinalTransformMatrix();
+	testRasterizer.setLookAt(vector3(0, 0, -0.5), vector3(0, 0, 0), vector3(0, 1, 0));
 
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	testRasterizer.render();

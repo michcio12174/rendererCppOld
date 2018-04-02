@@ -12,18 +12,17 @@ public:
 	rasterizer(int width, int height);
 
 	//rasterization
-	void drawTriangle(triangle triangle);
+	void drawTriangle(triangle triangle); //trinagles with vertices positioned clockwise are visible
 	void drawMesh(mesh meshToDraw); //TO OPT
 	void render();
 	void addObject(mesh meshToDraw); //TO OPT
 	void saveToTGA();
-	//adding lights
+	//adding lights to vertex processor
 	void setAmbientLight(ambientLight l);
 	void addLight(light l);
 	//setting vertex processor properties
 	void setPerspective(float fov, float aspect, float nearPlane_z, float farPlane_z);
 	void setLookAt(vector3 eye, vector3 target, vector3 up);
-	void calculateFinalTransformMatrix();
 	//other
 	void displayImages();
 
