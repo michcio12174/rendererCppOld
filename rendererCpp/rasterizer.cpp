@@ -63,6 +63,8 @@ void rasterizer::drawTriangle(triangle triangle)
 	for (int y = miny; y < maxy; y++) {//To OPT
 		for (int x = minx; x < maxx; x++) {
 
+			//checking if we are inside of the triangle
+			//assuming clockwise triangles are facing the camera
 			if (((!isTopLeft1 && dx12*(y - y1) - dy12*(x - x1) > 0) || (isTopLeft1 && dx12*(y - y1) - dy12*(x - x1) >= 0)) &&
 				((!isTopLeft2 && dx23*(y - y2) - dy23*(x - x2) > 0) || (isTopLeft2 && dx23*(y - y2) - dy23*(x - x2) >= 0)) &&
 				((!isTopLeft3 && dx31*(y - y3) - dy31*(x - x3) > 0) || (isTopLeft3 && dx31*(y - y3) - dy31*(x - x3) >= 0))) 
@@ -75,6 +77,8 @@ void rasterizer::drawTriangle(triangle triangle)
 					  lambda2 = (dy31 * (x - x3) - dx31 * (y - y3)) / (dy31 * dx23 - dx31 * dy23),
 					  lambda3 = 1.0f - lambda1 - lambda2;
 
+				//calculating depth (z) of the point based on lambdas and depth of triangle's vertices
+				//lambdas are barycentric coordinates of the point in relation to those vertices
 				float depth = lambda1 * triangle.A.position.z + lambda2 * triangle.B.position.z + lambda3 * triangle.C.position.z;
 
 				if (depth >= 0 && depth < bufferInstance->getDepth(x, y)) 

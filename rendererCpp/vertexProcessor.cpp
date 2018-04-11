@@ -13,6 +13,8 @@ vertexProcessor::vertexProcessor():
 vector3 vertexProcessor::transform(vector3 position)
 {
 	vector4 result = finalTransformMatrix * vector4(position);
+	//cout << result.toString() << endl;
+	//cout << (vector3(result.x, result.y, result.z) / result.w).toString() << endl;
 	return vector3(result.x, result.y, result.z) / result.w; //TO OPT operowanie bezpoœrednio na vertexie przekazanym do funkcji
 }
 
@@ -30,25 +32,17 @@ vector3 vertexProcessor::illuminate(vertex v, material mat)
 
 void vertexProcessor::setPerspective(float fov, float aspect, float nearPlane_z, float farPlane_z)
 {
-	//float halfFOVInRadians = (fov * 3.14159265358979323846) / 360; //To OPT policzyæ
-	//float f = cos(halfFOVInRadians) / sin(halfFOVInRadians);
-	//float nearMinusPlane = nearPlane_z - farPlane_z;
+	float angleInRadians = (fov * 3.14159265358979323846) / 360.0f; //To OPT policzyæ //podzielone przez 180 i przez 2
+	float f = 1.0F / tan(angleInRadians);
+	float nearMinusFar = nearPlane_z - farPlane_z;
 
-	//view2proj = float4x4(
-	//	vector4(f / aspect, 0, 0, 0),
-	//	vector4(0, f, 0, 0),
-	//	vector4(0, 0, (farPlane_z + nearPlane_z) / nearMinusPlane, (2.0F * farPlane_z * nearPlane_z) / nearMinusPlane),
-	//	vector4(0, 0, -1.0F, 0));
-
-	float angleInRadians = (fov * 3.14159265358979323846) / 180;
-	float f = 1.0F / tan(angleInRadians * 0.5F);
-	float nearPlaneMinusFarPlane = nearPlane_z - farPlane_z;
-
+	//whis matrix remaps the objects into cuboid wyth x and y between <-1, 1> and z between <0, 1>
+	//nie jest nie tak z mapowaniem z - ustawianie clipping planów podowuje problemy
 	view2proj = float4x4(
 		vector4(f / aspect, 0.0f, 0.0f,                                                         0.0f),
 		vector4(0.0f,       f,    0.0f,                                                         0.0f),
-		vector4(0.0f,       0.0f, (farPlane_z + nearPlane_z) / (nearPlaneMinusFarPlane),       -1.0f),
-		vector4(0.0f,       0.0f, (2.0F * farPlane_z * nearPlane_z) / (nearPlaneMinusFarPlane), 0.0f));
+		vector4(0.0f,       0.0f, (farPlane_z + nearPlane_z) / (nearMinusFar),                 -1.0f),
+		vector4(0.0f,       0.0f, (2 * farPlane_z * nearPlane_z) / (nearMinusFar),              0.0f));
 }
 
 void vertexProcessor::setLookAt(vector3 eye, vector3 target, vector3 up)
@@ -57,7 +51,9 @@ void vertexProcessor::setLookAt(vector3 eye, vector3 target, vector3 up)
 	//it should be equal to target - eye
 	//however a convention says that cameras look in direction of negative z axis
 	//therefore forward vector is flipped
-	vector3 forward = (eye - target).normalize(); //reversed so camera looks along negative z
+	//it also means that all vertices that are before the camera will have negative z coordinate 
+	//if z>0 it means that vertex is behind the camera
+	vector3 forward = (eye - target).normalize();
 	up.normalize();
 	vector3 side = up.cross(forward);
 	vector3 up1 = forward.cross(side);

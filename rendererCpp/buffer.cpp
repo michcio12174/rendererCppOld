@@ -15,10 +15,8 @@ buffer::buffer(int width, int height):
 
 void buffer::clear()
 {
-	for (int i = 0; i < length; i++) {
-		colorBuffer[i] = white;
-		depthBuffer[i] = 1.0f;
-	}
+	clearColor();
+	clearDepth();
 }
 
 void buffer::clearColor()
