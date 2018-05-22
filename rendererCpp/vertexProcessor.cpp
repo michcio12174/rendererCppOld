@@ -58,6 +58,12 @@ void vertexProcessor::setLookAt(vector3 eye, vector3 target, vector3 up)
 	vector3 side = up.cross(forward);
 	vector3 up1 = forward.cross(side);
 
+	cout << "camera lookat set to:" << endl;
+	cout << "forward - " << forward.toString() << endl;
+	cout << "side - " << side.toString() << endl;
+	cout << "up - " << up1.toString() << endl;
+	cout << "eye - " << eye.toString() << endl << endl;
+
 	world2view = float4x4
 	(
 		vector4(side.x, up1.x, forward.x, 0.0f),

@@ -98,7 +98,7 @@ void rasterizerTest() {
 	vector3 red(1, 0, 0);
 	vector3 green(0, 1, 0);
 	mesh mesh1;
-	mesh1.addTriangle(triangle(vector3(-1, -1, -0.3), vector3(0, -1, -0.3), vector3(0, 0, -0.3),  red));//red triangle
+	mesh1.addTriangle(triangle( vector3(0, -1, -0.3), vector3(-1, -1, -0.3), vector3(0, 0, -0.3),  red));//red triangle
 	//mesh1.addTriangle(triangle(vector3(0, -1, -0.2), vector3(0, 0, -0.5), vector3(-1, 0, -0.5), green));//green triangle
 	testRasterizer.addObject(mesh1);
 
@@ -117,7 +117,7 @@ void rasterizerTest() {
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	duration<float> duration = t2 - t1;
 	cout << "render time: " << duration.count() << endl;
-	cout << "FPS: " << 1/duration.count() << endl;
+	cout << "FPS: " << 1 / duration.count() << endl;
 
 	testRasterizer.saveToTGA();
 	testRasterizer.displayImages();
