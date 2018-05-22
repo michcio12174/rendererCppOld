@@ -19,6 +19,19 @@
 
 #include "rasterizer.h"
 
+//axes are oriented in following way:
+//			y
+//			|
+//			|
+//			|
+//			|__________x
+//         /
+//        /
+//       /
+//      z
+
+//rasterizer - visible triangles are clockwise
+
 //funcje testuj¹ce raytracer
 void task2();
 void task3();
@@ -30,7 +43,6 @@ void projekt();
 void matrixAlgebraTest();
 void savingTGA();
 void rasterizerTest();
-void tempf();
 
 //zmienne dla œwiata
 int width = 800, height = 600;
@@ -86,7 +98,7 @@ void rasterizerTest() {
 	vector3 red(1, 0, 0);
 	vector3 green(0, 1, 0);
 	mesh mesh1;
-	mesh1.addTriangle(triangle(vector3(0, -1, -0.3), vector3(-1, -1, -0.3), vector3(0, 0, -0.3),  red));//red triangle
+	mesh1.addTriangle(triangle(vector3(-1, -1, -0.3), vector3(0, -1, -0.3), vector3(0, 0, -0.3),  red));//red triangle
 	//mesh1.addTriangle(triangle(vector3(0, -1, -0.2), vector3(0, 0, -0.5), vector3(-1, 0, -0.5), green));//green triangle
 	testRasterizer.addObject(mesh1);
 
@@ -94,8 +106,11 @@ void rasterizerTest() {
 	//OBJReader reader2(mesh2, "../models/cone", 1);
 	//testRasterizer.addObject(mesh2);
 
-	testRasterizer.setLookAt(vector3(0, 0, 2), vector3(0, 0, -1), vector3(0, 1, 0));
-	testRasterizer.setPerspective(60.0f, static_cast<float>(width) / height, 0.1f, 100.0f);
+	vector3 eye(0, 0, 0.5);
+	vector3 target(0, 0, 1);
+	vector3 up(0, 1, 0);
+	testRasterizer.setLookAt(eye, target, up);
+	//testRasterizer.setPerspective(60.0f, static_cast<float>(width) / height, 0.1f, 100.0f);
 
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	testRasterizer.render();
