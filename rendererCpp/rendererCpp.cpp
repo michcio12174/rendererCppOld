@@ -32,6 +32,13 @@
 
 //rasterizer - visible triangles are clockwise
 
+//time-measuring functions and variables
+void startTimer();
+void stopTimer();
+
+high_resolution_clock::time_point t1;
+high_resolution_clock::time_point t2;
+
 //funcje testuj¹ce raytracer
 void task2();
 void task3();
@@ -54,7 +61,7 @@ world worldOne(maxAntialiasingIterations, minColorDistanse, ambientL);
 
 //dane dla kamer
 float zoom = 3.6f;
-vector3 centerOfWievingPlane(120, 80, -90, false);
+vector3 centerOfWievingPlane(0, 0, 60, false);
 vector3 lookat(0, 0, 0, false);
 
 int main()
@@ -65,12 +72,12 @@ int main()
 	//task4();
 	//task5();
 	//task6();
-	//projekt();
+	projekt();
 
 	//pipeline
 	//matrixAlgebraTest();
 	//savingTGA();
-	rasterizerTest();
+	//rasterizerTest();
 
 	/*int x = 0;
 	unsigned char a = 0, r = 0, g = 0, b = 255;
@@ -80,13 +87,24 @@ int main()
 	x |= (b);
 	cout << (int)b << endl;
 	for (int i = 7; i >= 0; i--)
-		cout << ((b >> i) & 1);
+	cout << ((b >> i) & 1);
 
 	cout<<endl << x << endl;
 	for (int i = 31; i >= 0; i--)
-		cout << ((x >> i) & 1);
+	cout << ((x >> i) & 1);
 
 	cin >> x;*/
+}
+
+void startTimer() {
+	t1 = high_resolution_clock::now();
+}
+
+void stopTimer() {
+	t2 = high_resolution_clock::now();
+	duration<float> duration = t2 - t1;
+	cout << "render time: " << duration.count() << endl;
+	cout << "FPS: " << 1 / duration.count() << endl;
 }
 
 void rasterizerTest() {
@@ -98,8 +116,8 @@ void rasterizerTest() {
 	vector3 red(1, 0, 0);
 	vector3 green(0, 1, 0);
 	mesh mesh1;
-	mesh1.addTriangle(triangle( vector3(0, -1, -0.3), vector3(-1, -1, -0.3), vector3(0, 0, -0.3),  red));//red triangle
-	//mesh1.addTriangle(triangle(vector3(0, -1, -0.2), vector3(0, 0, -0.5), vector3(-1, 0, -0.5), green));//green triangle
+	mesh1.addTriangle(triangle(vector3(0, -1, -0.3), vector3(-1, -1, -0.3), vector3(0, 0, -0.3), red));//red triangle
+																									   //mesh1.addTriangle(triangle(vector3(0, -1, -0.2), vector3(0, 0, -0.5), vector3(-1, 0, -0.5), green));//green triangle
 	testRasterizer.addObject(mesh1);
 
 	//mesh mesh2;
@@ -112,12 +130,9 @@ void rasterizerTest() {
 	testRasterizer.setLookAt(eye, target, up);
 	//testRasterizer.setPerspective(60.0f, static_cast<float>(width) / height, 0.1f, 100.0f);
 
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	startTimer();
 	testRasterizer.render();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	duration<float> duration = t2 - t1;
-	cout << "render time: " << duration.count() << endl;
-	cout << "FPS: " << 1 / duration.count() << endl;
+	stopTimer;
 
 	testRasterizer.saveToTGA();
 	testRasterizer.displayImages();
@@ -141,8 +156,8 @@ void matrixAlgebraTest() {
 
 	cout << A.toString() << endl;
 
-	cout << "V3: " << (A*z3).toString() << " v3: " << z3.toString() << endl;
-	cout << "V4: " << (A*z4).toString() << " v4: " << z4.toString() << endl;
+	cout << "V3: " << (z3 *= A).toString() << " v3: " << z3.toString() << endl;
+	cout << "V4: " << (z4 *= A).toString() << " v4: " << z4.toString() << endl;
 	int asd;
 	cin >> asd;
 }
@@ -253,18 +268,18 @@ void projekt() {
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
 	cameraO.setResolution(width, height);
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
+	stopTimer();
 	renderedSceneO.save("../Images/renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 200);
 	cameraP.setResolution(width, height);
-	high_resolution_clock::time_point t3 = high_resolution_clock::now();
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
-	high_resolution_clock::time_point t4 = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>(t4 - t3).count();
-	cout << duration << endl;
+	stopTimer();
 	renderedSceneP.save("../Images/renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
@@ -361,13 +376,17 @@ void task6() {
 	//cameras
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
+	stopTimer();
 	renderedSceneO.save("../Images/renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 200);
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
+	stopTimer();
 	renderedSceneP.save("../Images/renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
@@ -423,25 +442,19 @@ void task5() {
 	//cameras
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
-	//measuring time
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	cameraO.setResolution(width, height);
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	duration<float> duration1 = t2 - t1;
-	cout << duration1.count() << endl;
-	//time measured
+	stopTimer();
 	renderedSceneO.save("../Images/renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 100);
 	cameraP.setResolution(width, height);
-	high_resolution_clock::time_point t3 = high_resolution_clock::now();
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
-	high_resolution_clock::time_point t4 = high_resolution_clock::now();
-	duration<float> duration2 = t4 - t3;
-	cout << duration2.count() << endl;
+	stopTimer();
 	renderedSceneP.save("../Images/renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
@@ -524,25 +537,19 @@ void task4() {
 	//cameras
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
-	//measuring time
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	cameraO.setResolution(width, height);
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>(t2 - t1).count();
-	cout << duration << endl;
-	//time measured
+	stopTimer();
 	renderedSceneO.save("../Images/renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 100);
-	high_resolution_clock::time_point t3 = high_resolution_clock::now();
 	cameraP.setResolution(width, height);
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
-	high_resolution_clock::time_point t4 = high_resolution_clock::now();
-	duration = duration_cast<microseconds>(t4 - t3).count();
-	cout << duration << endl;
+	stopTimer();
 	renderedSceneP.save("../Images/renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
@@ -566,25 +573,19 @@ void task3() {
 	//cameras
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
-	//measuring time
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	cameraO.setResolution(width, height);
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>(t2 - t1).count();
-	cout << duration << endl;
-	//time measured
+	stopTimer();
 	renderedSceneO.save("../renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 100);
-	high_resolution_clock::time_point t3 = high_resolution_clock::now();
 	cameraP.setResolution(width, height);
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
-	high_resolution_clock::time_point t4 = high_resolution_clock::now();
-	duration = duration_cast<microseconds>(t4 - t3).count();
-	cout << duration << endl;
+	stopTimer();
 	renderedSceneP.save("../renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
@@ -628,26 +629,20 @@ void task2() {
 	//cameras
 	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
-	//measuring time
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	startTimer();
 	renderedSceneO = cameraO.renderImage();
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>(t2 - t1).count();
-	cout << duration << endl;
-	//time measured
+	stopTimer();
 	renderedSceneO.save("../renderedSceneO.bmp");
 	CImgDisplay windowO(renderedSceneO, "Orthogonal");
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 100);
-	high_resolution_clock::time_point t3 = high_resolution_clock::now();
+	startTimer();
 	renderedSceneP = cameraP.renderImage();
-	high_resolution_clock::time_point t4 = high_resolution_clock::now();
-	duration = duration_cast<microseconds>(t4 - t3).count();
-	cout << duration << endl;
+	stopTimer();
 	renderedSceneP.save("../renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
-	
+
 	while (!windowO.is_closed() && !windowP.is_closed()) {
 		windowO.wait();
 	}
