@@ -8,7 +8,7 @@ struct multipleObjectsTracer
 {
 	multipleObjectsTracer() {}
 
-	static vector3 traceRay(rayHitInfo &info);
-	static void traceShadowRay(rayHitInfo &info, light *lightToUse);
+	static vector3 traceRay(rayHitInfo info);
+	static void traceShadowRay(rayHitInfo info, light *lightToUse);
 };
 

@@ -2,7 +2,7 @@
 #include "multipleObjectsTracer.h"
 #include "material.h"
 
-vector3 multipleObjectsTracer::traceRay(rayHitInfo &info)
+vector3 multipleObjectsTracer::traceRay(rayHitInfo info)
 {
 	//info to informacja o najbli¿szym przeciêciu, temp to informacja o przeciêziu w aktualej iteracji pêtli
 	rayHitInfo temp = info; 
@@ -21,7 +21,7 @@ vector3 multipleObjectsTracer::traceRay(rayHitInfo &info)
 	else return info.materialToShade->shade(info);
 }
 
-void multipleObjectsTracer::traceShadowRay(rayHitInfo & info, light *lightToUse)
+void multipleObjectsTracer::traceShadowRay(rayHitInfo info, light *lightToUse)
 {
 	int size = info.worldToRender->objectsInTheScene.size();
 	

@@ -70,7 +70,7 @@ AshikhminShirleyMaterial::~AshikhminShirleyMaterial()
 {
 }
 
-vector3 AshikhminShirleyMaterial::shade(rayHitInfo & info)
+vector3 AshikhminShirleyMaterial::shade(rayHitInfo info)
 {
 	ray rayToLightSource;
 

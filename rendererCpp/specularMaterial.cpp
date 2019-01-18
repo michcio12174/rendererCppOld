@@ -22,7 +22,7 @@ specularMaterial::~specularMaterial()
 {
 }
 
-vector3 specularMaterial::shade(rayHitInfo & info)
+vector3 specularMaterial::shade(rayHitInfo info)
 {
 	ray rayToLightSource;
 

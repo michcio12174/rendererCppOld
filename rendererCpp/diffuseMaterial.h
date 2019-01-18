@@ -8,7 +8,7 @@ public:
 	diffuseMaterial(texture *materialTexture, float diffuseCoefficient);
 	~diffuseMaterial();
 
-	vector3 shade(rayHitInfo &info);
+	vector3 shade(rayHitInfo info);
 private:
 	float diffuseCoefficient;
 };

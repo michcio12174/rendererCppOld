@@ -22,7 +22,7 @@ PhongMaterial::PhongMaterial(texture * materialTexture, float specularCoefficien
 {
 }
 
-vector3 PhongMaterial::shade(rayHitInfo & info)
+vector3 PhongMaterial::shade(rayHitInfo info)
 {
 	ray rayToLightSource;
 

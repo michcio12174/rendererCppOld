@@ -17,7 +17,7 @@ material::~material()
 {
 }
 
-vector3 material::shade(rayHitInfo &info)
+vector3 material::shade(rayHitInfo info)
 {
 	return getTextureColor(info.hitPoint);
 }

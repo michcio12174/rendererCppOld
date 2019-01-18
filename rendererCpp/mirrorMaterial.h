@@ -7,6 +7,6 @@ public:
 	mirrorMaterial();
 	~mirrorMaterial();
 
-	vector3 shade(rayHitInfo &info);
+	vector3 shade(rayHitInfo info);
 };
 

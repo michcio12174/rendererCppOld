@@ -10,11 +10,7 @@ directionalMaterial::directionalMaterial(texture * materialTexture) :material(ma
 {
 }
 
-directionalMaterial::~directionalMaterial()
-{
-}
-
-vector3 directionalMaterial::shade(rayHitInfo & info)
+vector3 directionalMaterial::shade(rayHitInfo info)
 {
 	float temp = info.normal.dot(-info.incomingRay.direction);
 	return getTextureColor(info.hitPoint)*temp;

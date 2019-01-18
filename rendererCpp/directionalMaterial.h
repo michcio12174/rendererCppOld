@@ -6,8 +6,7 @@ class directionalMaterial :
 public:
 	directionalMaterial();
 	directionalMaterial(texture *materialTexture);
-	~directionalMaterial();
 
-	vector3 shade(rayHitInfo &info);
+	vector3 shade(rayHitInfo info);
 };
 

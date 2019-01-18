@@ -16,7 +16,7 @@ diffuseMaterial::~diffuseMaterial()
 {
 }
 
-vector3 diffuseMaterial::shade(rayHitInfo &info)
+vector3 diffuseMaterial::shade(rayHitInfo info)
 {
 	ray rayToLightSource;
 

@@ -10,7 +10,7 @@ public:
 	PhongMaterial(texture *materialTexture, float highlightSize);
 	PhongMaterial(texture *materialTexture, float specularCoefficient, float highlightSize, float diffuseCoefficient);
 
-	vector3 shade(rayHitInfo &info);
+	vector3 shade(rayHitInfo info);
 
 private:
 	float diffuseCoefficient;

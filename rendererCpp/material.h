@@ -12,7 +12,7 @@ public:
 
 	texture *materialTexture;
 
-	virtual vector3 shade(rayHitInfo &info);
+	virtual vector3 shade(rayHitInfo info);
 
 protected:
 	vector3 material::getTextureColor(vector3 localHitPoint) const;

@@ -18,7 +18,7 @@ transparentMaterial::~transparentMaterial()
 {
 }
 
-vector3 transparentMaterial::shade(rayHitInfo & info)
+vector3 transparentMaterial::shade(rayHitInfo info)
 {
 	if (info.reflectionNr < 5) {
 		float n;

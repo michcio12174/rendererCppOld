@@ -10,7 +10,7 @@ mirrorMaterial::~mirrorMaterial()
 {
 }
 
-vector3 mirrorMaterial::shade(rayHitInfo & info)
+vector3 mirrorMaterial::shade(rayHitInfo info)
 {
 	if (info.reflectionNr < 5) {
 		vector3 intersection = info.incomingRay.origin + info.incomingRay.direction * info.t;

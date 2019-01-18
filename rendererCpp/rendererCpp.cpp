@@ -265,14 +265,14 @@ void projekt() {
 	worldOne.addObject(&triangle2);
 
 	//cameras
-	CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
+	/*CImg<unsigned char> renderedSceneO(width, height, 1, 3, 0);
 	orthogonalCamera cameraO(centerOfWievingPlane, lookat, zoom, &worldOne);
 	cameraO.setResolution(width, height);
 	startTimer();
 	renderedSceneO = cameraO.renderImage();
 	stopTimer();
 	renderedSceneO.save("../Images/renderedSceneO.bmp");
-	CImgDisplay windowO(renderedSceneO, "Orthogonal");
+	CImgDisplay windowO(renderedSceneO, "Orthogonal");*/
 
 	CImg<unsigned char> renderedSceneP(width, height, 1, 3, 0);
 	perspectiveCamera cameraP(centerOfWievingPlane, lookat, zoom, &worldOne, 200);
@@ -283,7 +283,7 @@ void projekt() {
 	renderedSceneP.save("../Images/renderedSceneP.bmp");
 	CImgDisplay windowP(renderedSceneP, "Perspective");
 
-	while (!windowO.is_closed() && !windowP.is_closed()) {
+	while (!windowP.is_closed()) {
 		windowP.wait();
 	}
 }

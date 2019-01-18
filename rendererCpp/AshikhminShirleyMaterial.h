@@ -10,7 +10,7 @@ public:
 	AshikhminShirleyMaterial();
 	~AshikhminShirleyMaterial();
 
-	vector3 shade(rayHitInfo &info);
+	vector3 shade(rayHitInfo info);
 
 private:
 	//uCoeff and vCoeff control anisotropy calculated for coordinate system local for each hit point

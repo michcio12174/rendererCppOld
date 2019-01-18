@@ -8,7 +8,7 @@ public:
 	transparentMaterial(float indexOfRefraction);
 	~transparentMaterial();
 
-	vector3 shade(rayHitInfo & info);
+	vector3 shade(rayHitInfo info);
 
 protected:
 	double indexOfRefraction;

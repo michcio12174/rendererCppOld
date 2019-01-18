@@ -2,7 +2,7 @@
 #include "vectorsAndMatrices.h"
 #include <iomanip>
 
-const static float epsilon = 0.000001; //u¿ywany do sprawczenia, czy normalizowany wektor nie jest za ma³y
+const static float epsilon = 0.000001; //u¿ywany do sprawdzenia, czy normalizowany wektor nie jest za ma³y
 
 //------------------------------------------------------------vector3------------------------------------------------------------
 
