@@ -1,0 +1,26 @@
+B£ÊDY
+Raytracer:
+-antyaliasing zdaje siê nie dzia³aæ
+-antyaliasing produkuje artefakty na granicach sfer i w ich centrach - pojedyncze piksele w kolorze materia³u, które nie s¹ cieniowane - s¹ wyraŸnie jaœniejsze
+-trójk¹ty nie daj¹ siê ustawiæ inaczej ni¿ p³asko na p³aszczyœnie xy
+-œwiat³o reflektorowe Ÿle oœwietla p³aszczyzny wystawione równolegle do kierunku œwiecenia
+
+Rasteryzer:
+-nie wiem który materia³ z uzyskanych z .mtl u¿yæ w rasteryzerze draw triangle i gdzie go przechowywaæ
+-nie widzê wczytanych siatek
+
+W mojej konwencji kamera patrzy po negatywnych z. To znaczy, ¿e jeœli obiekt jest przed kamer¹ i ma wspó³rzêdn¹ 1, a kamera jest na 0, to po transformacji punkt bêdzie mia³ wspó³rzêdn¹ -1. Bêdzie siê wydawa³o, ¿e nie powinien byæ widziany, ¿e jest za ni¹ i ¿e kamera patrzy w odwrotnych ierunkach ni¿ j¹ ustawiamy. Pozostaj¹ jednak pytania:
+-czy wystarczy testowaæ bufor g³êbokoœci na ujemne wartoœci?
+-czy powinniœmy jakoœ odwracaæ znak wspó³rzêdnej z, na przyk³ad w macierzy kamery?
+-co trzeba zmieniæ w innych klasach w zwi¹zku z tym?
+-czemu dystans do punktu nie zgadza siê, gdy mam:
+vector3 eye(0, 0, 0.5);
+vector3 target(0, 0, 1);
+vector3 up(0, 1, 0);
+
+triangle vector3(0, -1, -0.3), vector3(-1, -1, -0.3), vector3(0, 0, -0.3)
+czyœ nie powinny wychodziæ na pozytywnych z w odleg³oœci 0.8?
+
+
+Czêœci wspólne:
+-ma³e zmiany nie powoduj¹ przebudowania projektu
