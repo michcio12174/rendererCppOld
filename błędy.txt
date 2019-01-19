@@ -1,7 +1,6 @@
 B£ÊDY
 Raytracer:
 -antyaliasing zdaje siê nie dzia³aæ
--antyaliasing produkuje artefakty na granicach sfer i w ich centrach - pojedyncze piksele w kolorze materia³u, które nie s¹ cieniowane - s¹ wyraŸnie jaœniejsze
 -trójk¹ty nie daj¹ siê ustawiæ inaczej ni¿ p³asko na p³aszczyœnie xy
 -œwiat³o reflektorowe Ÿle oœwietla p³aszczyzny wystawione równolegle do kierunku œwiecenia
 
