@@ -24,8 +24,6 @@ PhongMaterial::PhongMaterial(texture * materialTexture, float specularCoefficien
 
 vector3 PhongMaterial::shade(rayHitInfo info)
 {
-	ray rayToLightSource;
-
 	vector3 pixelColor(0, 0, 0);
 
 	//get color from ambient light

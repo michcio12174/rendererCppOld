@@ -21,30 +21,36 @@ vector3 multipleObjectsTracer::traceRay(rayHitInfo info)
 	else return info.materialToShade->shade(info);
 }
 
-void multipleObjectsTracer::traceShadowRay(rayHitInfo info, light *lightToUse)
+void multipleObjectsTracer::traceShadowRay(rayHitInfo &info, light *lightToUse)
 {
 	int size = info.worldToRender->objectsInTheScene.size();
 	
 	//funkcje hit ustawiaj¹ info o przeciêciu tylko jeœli jest trafienie
 	rayHitInfo temp = info;
 	if (info.worldToRender) {
+		//cout << "tracing shadowwww" << endl;
 		//if a light is a point light, we check if there was a hit between light origin and shaded point
 		if (lightToUse->isPointLight) {
 			float distanceToLightSource = (lightToUse->origin - info.incomingRay.origin).x / info.incomingRay.direction.x;
 			//wychodzimy z pêtli od tazu kiedy by³o przeciêcie, nie trzeba sprawdzaæ innych obiektów
-			for (int i = 0; i < size && !info.hitOccured; i++) {
+			for (int i = 0; i < size; i++) {
 				info.worldToRender->objectsInTheScene[i]->hit(temp);
 				//we change info only if hit in temp is between light source and shadow ray origin
-				if (temp.t < distanceToLightSource)
-					info = temp;
+				if (temp.hitOccured && temp.t < distanceToLightSource) {
+					info = temp; 
+					return;
+				}
 			}
 		}
 		//if a light is a directional light we check if there is any hit starting from shaded point in inverse direction of light
 		else {
 			//wychodzimy z pêtli od tazu kiedy by³o przeciêcie, nie trzeba sprawdzaæ innych obiektów
-			for (int i = 0; i < size && !info.hitOccured; i++) {
+			for (int i = 0; i < size; i++) {
 				info.worldToRender->objectsInTheScene[i]->hit(temp);
-				if (temp.hitOccured) info = temp;
+				if (temp.hitOccured) { 
+					info = temp; 
+					return;
+				}
 			}
 		}
 	}

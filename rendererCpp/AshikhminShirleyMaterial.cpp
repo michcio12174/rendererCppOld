@@ -72,8 +72,6 @@ AshikhminShirleyMaterial::~AshikhminShirleyMaterial()
 
 vector3 AshikhminShirleyMaterial::shade(rayHitInfo info)
 {
-	ray rayToLightSource;
-
 	vector3 pixelColor(0, 0, 0);
 
 	//get color from ambient light
