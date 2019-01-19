@@ -1,6 +1,5 @@
 B£ÊDY
 Raytracer:
--antyaliasing zdaje siê nie dzia³aæ
 -trójk¹ty nie daj¹ siê ustawiæ inaczej ni¿ p³asko na p³aszczyœnie xy
 -œwiat³o reflektorowe Ÿle oœwietla p³aszczyzny wystawione równolegle do kierunku œwiecenia
 

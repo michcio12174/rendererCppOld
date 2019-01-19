@@ -2,8 +2,7 @@
 #include "orthogonalCamera.h"
 #include "multipleObjectsTracer.h"
 
-orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zoom, world *worldToRender) :
-	aaSamplesDistance(1.5f)
+orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zoom, world *worldToRender)
 {
 	//----------obliczam bazê ortonormaln¹ dla kamery
 	computeUVW(planeCenter, lookat, vector3(0, 1, 0, false));
@@ -16,8 +15,7 @@ orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zo
 	this->pixelSize = 1 / zoom;
 }
 
-orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, vector3 up, float zoom, world *worldToRender) :
-	aaSamplesDistance(1.5f)
+orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, vector3 up, float zoom, world *worldToRender)
 {
 	//----------obliczam bazê ortonormaln¹ dla kamery
 	computeUVW(planeCenter, lookat, up);
