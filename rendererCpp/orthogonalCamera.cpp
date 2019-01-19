@@ -2,7 +2,8 @@
 #include "orthogonalCamera.h"
 #include "multipleObjectsTracer.h"
 
-orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zoom, world *worldToRender)
+orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zoom, world *worldToRender) :
+	aaSamplesDistance(1.5f)
 {
 	//----------obliczam bazê ortonormaln¹ dla kamery
 	computeUVW(planeCenter, lookat, vector3(0, 1, 0, false));
@@ -15,7 +16,8 @@ orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, float zo
 	this->pixelSize = 1 / zoom;
 }
 
-orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, vector3 up, float zoom, world *worldToRender)
+orthogonalCamera::orthogonalCamera(vector3 planeCenter, vector3 lookat, vector3 up, float zoom, world *worldToRender) :
+	aaSamplesDistance(1.5f)
 {
 	//----------obliczam bazê ortonormaln¹ dla kamery
 	computeUVW(planeCenter, lookat, up);
@@ -52,7 +54,7 @@ CImg<unsigned char> orthogonalCamera::renderImage()
 			vector3 returnedColor = antiAliase(
 				pixelSize*(width * 0.5f - i + 0.5f),       //x
 				pixelSize*(height * 0.5f - j - 0.5f),      //y
-				0, pixelSize);
+				pixelSize);
 
 			returnedColor.toEightBit();
 			renderedImage(i, j, 0) = returnedColor.r;
@@ -63,7 +65,7 @@ CImg<unsigned char> orthogonalCamera::renderImage()
 	return renderedImage;
 }
 
-vector3 orthogonalCamera::antiAliase(float x, float y, int iteration, float squareSize)
+vector3 orthogonalCamera::antiAliase(float x, float y, float squareSize)
 {
 	squareSize = squareSize / 2;
 
@@ -95,9 +97,6 @@ vector3 orthogonalCamera::antiAliase(float x, float y, int iteration, float squa
 		}
 		info = rayHitInfo(rayToGlobal(AARay), worldToRender);
 		colors[i] = multipleObjectsTracer::traceRay(info);
-		if (iteration < worldToRender->maxAntialiasingIterations && centerColor.distanceSquare(colors[i]) >= worldToRender->minColorDistanceSquare) {
-			antiAliase(AARay.origin.x, AARay.origin.y, ++iteration, squareSize / 2);
-		}
 	}
 	
 	centerColor.r = (colors[0].r + colors[1].r + colors[2].r + colors[3].r) * 0.25f;

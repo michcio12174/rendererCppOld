@@ -16,7 +16,7 @@ perspectiveCamera::perspectiveCamera(vector3 planeCenter, vector3 lookat, vector
 
 //metoda bierze wspó³rzêdne x oraz y na p³aszczyŸnie widzenia, przez które przejdzie centralny promieñ
 //promienie nie s¹ równoleg³e, dlatego trzeba tworzyæ nowe z przesuniêtym punktem pocz¹tkowym
-vector3 perspectiveCamera::antiAliase(float x, float y, int iteration, float squareSize)
+vector3 perspectiveCamera::antiAliase(float x, float y, float squareSize)
 {
 	squareSize = squareSize / 2;
 
@@ -50,10 +50,6 @@ vector3 perspectiveCamera::antiAliase(float x, float y, int iteration, float squ
 		}
 		info = rayHitInfo(rayToGlobal(constructPerspectiveRay(tempx, tempy)), worldToRender);
 		colors[i] = multipleObjectsTracer::traceRay(info);
-
-		//jeœl ró¿nica miêdzy centrum, a skrajem jest wiêksza ni¿ w wypadku ustalonego progu, dokonujemy aliasingu na æwiartce
-		if (iteration < worldToRender->maxAntialiasingIterations && centerColor.distanceSquare(colors[i]) >= worldToRender->minColorDistanceSquare) 
-			antiAliase(tempx, tempy, ++iteration, squareSize / 2);
 	}
 
 	centerColor.r = (colors[0].r + colors[1].r + colors[2].r + colors[3].r) * 0.25f;

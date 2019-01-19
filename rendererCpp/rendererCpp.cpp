@@ -53,11 +53,9 @@ void rasterizerTest();
 
 //zmienne dla œwiata
 int width = 800, height = 600;
-int maxAntialiasingIterations = 2;
-float minColorDistanse = 50;
 ambientLight ambientL(vector3(1, 1, 1), 0.05f);
 //world
-world worldOne(maxAntialiasingIterations, minColorDistanse, ambientL);
+world worldOne(ambientL);
 
 //dane dla kamer
 float zoom = 3.6f;
