@@ -52,9 +52,9 @@ vector3 perspectiveCamera::antiAliase(float x, float y, float squareSize)
 		colors[i] = multipleObjectsTracer::traceRay(info);
 	}
 
-	centerColor.r = (colors[0].r + colors[1].r + colors[2].r + colors[3].r) * 0.25f;
-	centerColor.g = (colors[0].g + colors[1].g + colors[2].g + colors[3].g) * 0.25f;
-	centerColor.b = (colors[0].b + colors[1].b + colors[2].b + colors[3].b) * 0.25f;
+	centerColor.r = (centerColor.r + colors[0].r + colors[1].r + colors[2].r + colors[3].r) * 0.2f;
+	centerColor.g = (centerColor.r + colors[0].g + colors[1].g + colors[2].g + colors[3].g) * 0.2f;
+	centerColor.b = (centerColor.r + colors[0].b + colors[1].b + colors[2].b + colors[3].b) * 0.2f;
 
 	return centerColor;
 }
